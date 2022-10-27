@@ -1,11 +1,12 @@
 package edu.temple.basicbrowser
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.EditText
 import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +21,18 @@ class MainActivity : AppCompatActivity() {
         urlEditText = findViewById(R.id.urlEditText)
         goButton = findViewById(R.id.goButton)
         webView = findViewById(R.id.webView)
+
+        val webSettings: WebSettings = webView.getSettings()
+        webSettings.javaScriptEnabled = true
+
+
+
+        goButton.setOnClickListener(){
+
+            webView.loadUrl(urlEditText.getText().toString())
+        }
+
+
 
         // Allow your browser to intercept hyperlink clicks
         webView.webViewClient = object: WebViewClient() {
